@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+
+<head>
+  <!-- Title shown on the browser tab -->
+  <title>Chatbot</title>
+</head>
+
+<body>
+  <!-- Empty box. React will draw the whole app inside this div -->
+  <div class="js-container"></div>
+
+  <!-- A separate JS file from an earlier lesson (not used by the code below) -->
+  <script src="react-basics.js"></script>
+
+  <!-- 1. React core library: components, JSX, props -->
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <!-- 2. ReactDOM: shows React's UI on the web page -->
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+  <!-- 3. Babel: converts JSX into plain JavaScript the browser understands -->
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <!-- type="text/babel" tells Babel to convert this code first, then run it -->
+  <script type="text/babel">
+
+    // ---------- COMPONENT 1: ChatInput ----------
+    // Shows the text box and the Send button
+    function ChatInput() {
+      return (
+        // <> </> is a Fragment: groups the input and button
+        // without adding an extra div to the page
+        <>
+          <input placeholder="Send message to chatbot" size="30"></input>
+          <button>Send</button>
+        </>
+      );
+    }
+
+    // ---------- COMPONENT 2: ChatMessage ----------
+    // Shows ONE message. It receives two props: message and sender
+    // { message, sender } = destructuring, picks the props out of the object
+    function ChatMessage({ message, sender }) {
+
+      return (
+        <div>
+          {/* Guard operator: show robot image only if sender is 'robot' */}
+          {sender === 'robot' && <img src="robot.png" width="50"></img>}
+
+          {/* Shows the text of the message */}
+          {message}
+
+          {/* Show user image only if sender is 'user' */}
+          {sender === 'user' && <img src="user.png" width="50"></img>}
+        </div>
+      )
+    }
+
+    // Old code left as a comment (not running)
+    // return (
+    //   <div>
+    //     {message}
+    //     {sender === 'user' && <img src="user.png" width="50"></img>}
+    //   </div>
+    // );
+
+    // ---------- COMPONENT 3: App ----------
+    // The main component. It puts all other components together
+    function App() {
+      return (<>
+
+        {/* Using the ChatInput component like a custom HTML tag */}
+        <ChatInput />
+
+        {/* Using ChatMessage 4 times, each with different props */}
+        {/* message = the text, sender = who sent it */}
+        <ChatMessage message="Hello Chatbot" sender="user" />
+        <ChatMessage message="How can I help you?" sender="robot" />
+        <ChatMessage message="Can you give me today's date?" sender="user" />
+        <ChatMessage message="Today is November 11" sender="robot" />
+      </>)
+    }
+
+    // ---------- START THE APP ----------
+    // Step 1: find the empty div from the top of the page
+    const container = document.querySelector(".js-container");
+
+    // Step 2: tell React to draw the App component inside that div
+    ReactDOM.createRoot(container).render(<App />);
+  </script>
+</body>
+
+</html>
