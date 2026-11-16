@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f4f6;
+  font-family: Arial, sans-serif;
+}
+
+.wrapper {
+  background: #ffffff;
+  padding: 32px;
+  width: 360px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: 24px;
+  text-align: center;
+  color: #111827;
+}
+
+.password-validator input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+  outline: none;
+}
+
+.password-validator input:focus {
+  border-color: #2563eb;
+}
+
+.rules {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.rule {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.rule.valid {
+  color: #16a34a;
+}
+
+.rule.invalid {
+  color: #dc2626;
+}
+
+.error {
+  margin-top: 12px;
+  color: #dc2626;
+  font-size: 14px;
+}
